@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html lang="AR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=EDGE">
+    <meta name="VIEWPORT" content="width=DEVICE-width,initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>
+العب اللعبة
+سيد الفرز الجيد: المطابقة الثلاثية</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mirza:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Mirza', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        p {
+            text-align: center;
+            color: #555;
+        }
+
+        .email-box {
+            text-align: center;
+            background: oklch(49.488% 0.18828 260.248);
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+    </style>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZ0LRGTJJK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MZ0LRGTJJK');
+    </script>
+    <link rel="icon" href="favicon.png" type="image/png">
+</head>
+
+<body>
+    <div class="content">
+        <img width="40%" src=banner.png>
+        <div align="right" class="hander-link">
+            <a href="index.html">الرئيسية</a>
+        </div>
+    </div>
+    <div align="center">
+        <button onclick="expandGame()">تكبير اللعبه لملء الشاشه</button>
+    </div>
+    <div id="game-container" class="Games-links" style="text-align: center;">
+        <iframe id="game-id" src="https://playgama.com/export/game/good-sort-master?clid=p_a383bcc2-0945-44fa-ad7d-bd13a7ad12e1"></iframe>
+    </div>
+    <script>
+        function expandGame() {
+            var gameElement = document.getElementById("game-container");
+
+            if (gameElement.requestFullscreen) {
+                gameElement.requestFullscreen();
+            } else if (gameElement.webkitRequestFullscreen) {
+                gameElement.webkitRequestFullscreen();
+            }
+        }
+    </script>
+    <div>
+        <div class="email-box">عن</div>
+        <div class="email-box">
+            Arrange items on shelves, place identical items next to each other in order to connect 3 of the same items on the shelf. A relaxing game where you have to organize objects on shelves. Cleaning has never been so interesting and fun! A simple and relaxing game for women and men alike!
+        </div>
+        <div class="email-box">طريقه اللعب</div>
+        <div class="email-box">
+            1. Drag items to place 3 identical items on the same shelf.
+            2. Remove all items on the shelves to complete the level. 
+            3. Complete levels to discover more of your favorite items!
+        </div>
+    </div>
+</body>
+
+</html>
