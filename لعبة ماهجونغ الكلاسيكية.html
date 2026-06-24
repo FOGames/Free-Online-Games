@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-COMPATIBLE" content="IE=EDGE">
     <meta name="VIEWPORT" content="width=DEVICE-width,initial-scale=1.0">
     <link rel="stylesheet" href="style.css" />
-    <title>محاكي تطور الحيوانات</title>
+    <title>لعبة ماهجونغ الكلاسيكية</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mirza:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -65,59 +65,32 @@
         </div>
     </div>
     <div align="center">
-    <button onclick="expandGame()">تكبير اللعبه لملء الشاشه</button>
+        <button onclick="expandGame()">تكبير اللعبه لملء الشاشه</button>
     </div>
-         <script>
-function expandGame() {
-    var gameElement = document.getElementById("game-container");
-    
-    if (gameElement.requestFullscreen) {
-        gameElement.requestFullscreen();
-    } else if (gameElement.webkitRequestFullscreen) {
-        gameElement.webkitRequestFullscreen();
-    }
-}
-</script>
+    <script>
+        function expandGame() {
+            var gameElement = document.getElementById("game-container");
+
+            if (gameElement.requestFullscreen) {
+                gameElement.requestFullscreen();
+            } else if (gameElement.webkitRequestFullscreen) {
+                gameElement.webkitRequestFullscreen();
+            }
+        }
+    </script>
     <div id="game-container" class="Games-links" style="text-align: center;">
         <iframe id="game-id"
-            src="https://playgama.com/export/game/animal-evolution-simulator?clid=p_a383bcc2-0945-44fa-ad7d-bd13a7ad12e1"></iframe>
+            src="https://playgama.com/export/game/mahjong-classic?clid=p_a383bcc2-0945-44fa-ad7d-bd13a7ad12e1"></iframe>
     </div>
-   <script>
-function expandGame() {
-    var gameElement = document.getElementById("game-container");
-    
-    if (gameElement.requestFullscreen) {
-        gameElement.requestFullscreen();
-    } else if (gameElement.webkitRequestFullscreen) {
-        gameElement.webkitRequestFullscreen();
-    }
-}
-</script>
     <div>
         <div class="email-box">عن</div>
         <div class="email-box">
-            Evolve and go from a worm to the highest stage of evolution. Eat plants and mushrooms, grow and fight
-            predators.
-
-            Choose your strategy - should you be a stealthy hunter or a mighty defender of your territory?
-
-            Experience the delights of evolution, upgrade your skills and adapt to a changing world. Step over the
-            threshold of the next stage of evolution and find out what awaits you next in the next biome!
-
-            - Eat, fight predators and survive in a dangerous world!
-            - Evolve and rise to the highest level of development!
-            - Explore the map!
-            - Discover new biomes!
-
-
-            Good luck in Evolution!
+            "Mahjong Classic" is a classic mahjong solitaire with a unique algorithm for generating levels - a random layout of chips always has a solution! Each playthrough becomes unique, allowing you to play your favorite fields an unlimited amount of times!
+In the game you will find popular fields: Turtle, Fort, Crab, Spider, Cat, Dragon and many others.
         </div>
         <div class="email-box">طريقه اللعب</div>
         <div class="email-box">
-            Control the creature, eat mushrooms and plants, attack predators and evolve. PC Management: WASD - moving
-            Space - jump The left mouse button is an attack Right mouse button - moving the camera Mouse wheel - zoom
-            in/out of the camera Smartphone controls: Left joystick - moving Button with a jumping man - jump The target
-            button is an attack Swipe on the left side of the screen to move the camera
+            The goal of the game is to clear the field of chips. Choose chips with the same symbols to remove them. Special chips "flowers" are considered paired, and "seasons" are paired. A chip can be selected if it is not blocked by other chips. If there are no available pairs left on the field, you have lost. Boosters will help solve solitaire: 1) "Undo" - return the last pair. 2) "Hint" - show a pair. 3) "Spotlight" - simplify the search of chips available for selection.
         </div>
     </div>
 </body>
