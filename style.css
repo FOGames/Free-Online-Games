@@ -169,7 +169,12 @@ body {
         align-items: center;
     }
 }
-
-
+#p {
+    color: #fff; margin: 0; 
+    padding: 10px 0 16px 0;
+}
+#p button {
+     border-radius: 50px; border: none; height: 30px; padding: 5px 20px;
+}
 
 </style>
