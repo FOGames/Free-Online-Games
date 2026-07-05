@@ -1,3 +1,21 @@
+const shareBtn = document.getElementById('shareBtn');
+
+shareBtn.addEventListener('click', () => {
+    // التأكد أن المتصفح يدعم ميزة المشاركة الذكية
+    if (navigator.share) {
+        navigator.share({
+            title: 'موقعي الجديد', // عنوان الموقع عند المشاركة
+            text: 'بص على الموقع اللي أنا شغال عليه، هيعجبك!', // رسالة وصفية
+            url: window.location.href // هيأخذ رابط الصفحة الحالية تلقائياً
+        })
+        .then(() => console.log('تم فتح قائمة المشاركة بنجاح'))
+        .catch((error) => console.log('المستخدم كنسل أو حصل خطأ:', error));
+    } else {
+        // رسالة بديلة لو المتصفح قديم جداً ومش بيدعم الميزة
+        alert('متصفحك لا يدعم ميزة المشاركة التلقائية.');
+    }
+});
+
 
 // 1. تهيئة أداة الترجمة
 function googleTranslateElementInit() {
@@ -31,30 +49,3 @@ window.onclick = function(event) {
         dropdown.style.display = 'none';
     }
 }
-
-// install
-document.addEventListener('DOMContentLoaded', () => {
-    const btn = document.getElementById('btn-install');
-
-    if (btn) {
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            window.deferredPrompt = e;
-            btn.style.display = 'block';
-        });
-
-        btn.addEventListener('click', () => {
-            if (window.deferredPrompt) {
-                window.deferredPrompt.prompt();
-                window.deferredPrompt.userChoice.then((choice) => {
-                    if (choice.outcome === 'accepted') {
-                        btn.style.display = 'none';
-                    }
-                    window.deferredPrompt = null;
-                });
-            }
-        });
-    } else {
-        console.log("المتصفح لسه مش شايف الزرار كود الـ ID فيه تكة غلط.");
-    }
-});
