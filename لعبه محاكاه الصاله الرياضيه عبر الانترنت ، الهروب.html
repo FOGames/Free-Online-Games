@@ -5,47 +5,20 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-COMPATIBLE" content="IE=EDGE">
     <meta name="VIEWPORT" content="width=DEVICE-width,initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="style_game.css" />
     <title>لعبه محاكاه الصاله الرياضيه عبر الانترنت ، الهروب</title>
+    <meta name="description" content="تخيل لعبة محاكاة للصالة الرياضية (Gym Simulator) عبر الإنترنت، حيث تستيقظ لتجد نفسك محبوساً داخل حصن ضخم مصمم لاختبار قدرتك على الهروب؛ مكان لا ينجو فيه إلا الأقوى. انسَ التمارين المملة؛ فالأمر هنا يتعلق ببناء عضلات هائلة، ونمو فوري لجسمك، ومعارك ملحمية عبر الإنترنت للفوز بلقب البطل الأسطوري!
+
+هدفُك في هذه اللعبة بسيط: أن تصبح ضخماً لدرجة تمكّنك من تحطيم جدران القلعة حرفياً وهزيمة كل زعيم يعترض طريقك. مارس تمارين الضغط (Bench Press)، وارفع أثقال "الكيتل بيل" (kettlebells) و"الدمبلز" (dumbbells)، وشاهد شخصيتك تزداد ضخامة وقوة أمام عينيك مباشرة.
+
+إليك ما ينتظرك: • نمو بصري مذهل — ستصبح أضخم حجماً حرفياً بعد كل جلسة تدريب. • منافسات عبر الإنترنت — أثبت لأصدقائك أنك "آلة" لا تقهر ولست مجرد إنسان. • نظام تصنيف — ارتقِ من مستوى المبتدئ إلى مصاف العمالقة الأسطوريين. • تشكيلة واسعة من المظاهر (Skins) وتسريحات الشعر والأجنحة — لتصبح قوة لا تُقهر. • حيوانات أليفة تخرج من البيض — اجمع معززات قوية ودرب شخصيتك بسرعة مضاعفة 10 مرات.
+
+في هذه اللعبة، التقدم ليس مجرد أرقام — بل هو شيء تراه بوضوح؛ فكل نقرة تزيدك قوة. أنت لا تكتفي بمجرد "العمل الشاق" (Grinding)... بل تفرض هيمنتك وسيطرتك.
+
+هل أنت مستعد لتكون الشخص الذي يحطم جدران القلعة ويدخل عالم الأساطير؟ ابدأ رحلة تحولك الآن!">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Mirza:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Mirza', sans-serif;
-            line-height: 1.6;
-            background-color: #f4f4f4;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-        }
-
-        p {
-            text-align: center;
-            color: #555;
-        }
-
-        .email-box {
-            text-align: center;
-            background: oklch(49.488% 0.18828 260.248);
-            padding: 15px;
-            border-radius: 5px;
-            margin-top: 5px;
-            font-weight: bold;
-        }
-    </style>
-    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZ0LRGTJJK"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -58,48 +31,83 @@
 </head>
 
 <body>
-    <div class="content">
-        <img width="40%" src=banner.png>
-        <div align="right" class="hander-link">
-            <a href="index.html">الرئيسية</a>
+    <header>
+        <section id="header">
+            <div class="translate-wrapper">
+        <button class="main-translate-btn" id="translateBtn" onclick="toggleTranslateMenu()">
+            🌐 Language
+        </button>
+        
+        <div class="languages-dropdown" id="languagesDropdown">
+            <button onclick="changeLanguage('ar')">🇪🇬 العربية</button>
+            <button onclick="changeLanguage('en')">🇬🇧 English</button>
+            <button onclick="changeLanguage('es')">🇪🇸 Español</button>
+            <button onclick="changeLanguage('ru')">🇷🇺 Русский</button>
+            <button onclick="changeLanguage('fr')">🇫🇷 Français</button>
         </div>
     </div>
-    <div align="center">
-        <button onclick="expandGame()">تكبير اللعبه لملء الشاشه</button>
-    </div>
-    <script>
-        function expandGame() {
-            var gameElement = document.getElementById("game-container");
 
-            if (gameElement.requestFullscreen) {
-                gameElement.requestFullscreen();
-            } else if (gameElement.webkitRequestFullscreen) {
-                gameElement.webkitRequestFullscreen();
-            }
-        }
-    </script>
-    <div id="game-container" class="Games-links" style="text-align: center;">
-        <iframe id="game-id"
-            src="https://playgama.com/export/game/gym-simulator-online-escape?clid=p_a383bcc2-0945-44fa-ad7d-bd13a7ad12e1"></iframe>
-    </div>
-    <div>
+    <div id="google_translate_element" style="display:none;"></div>
+
+
+    <script src="script.js"></script>
+    
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            <a href="index.html">الرئيسية</a>
+        </section>
+    </header>
+    <main>
+        <section id="section-1">
+            <div id="full-screen">
+                <button onclick="expandGame()"><span class="fs-icon"></span> ملء الشاشه</button>
+            </div>
+            <div id="Share">
+                <button type="button" id="shareBtn" class="fs-button">
+                    <span>مشاركة</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+        <section>
+            <script>
+                function expandGame() {
+                    var gameElement = document.getElementById("game-container");
+
+                    if (gameElement.requestFullscreen) {
+                        gameElement.requestFullscreen();
+                    } else if (gameElement.webkitRequestFullscreen) {
+                        gameElement.webkitRequestFullscreen();
+                    }
+                }
+            </script>
+            <div id="game-container" class="Games-links" style="text-align: center;">
+                <iframe id="game-id"
+                    src="https://playgama.com/export/game/gym-simulator-online-escape?clid=p_a383bcc2-0945-44fa-ad7d-bd13a7ad12e1"></iframe>
+            </div>
+        </section>
+        <section>
         <div class="email-box">عن</div>
         <div class="email-box">
-            Imagine a Gym Simulator Online where you wake up locked inside a massive escape fortress — a place where only the STRONGEST survive. No boring workouts — only insane muscle gains, real-time body growth, and epic online battles for the title of ultimate champion!
+           تخيل لعبة محاكاة للصالة الرياضية (Gym Simulator) عبر الإنترنت، حيث تستيقظ لتجد نفسك محبوساً داخل حصن ضخم مصمم لاختبار قدرتك على الهروب؛ مكان لا ينجو فيه إلا الأقوى. انسَ التمارين المملة؛ فالأمر هنا يتعلق ببناء عضلات هائلة، ونمو فوري لجسمك، ومعارك ملحمية عبر الإنترنت للفوز بلقب البطل الأسطوري!
 
-Your goal in this escape gym simulator is simple: become so huge that you literally smash through the castle walls and defeat every boss in your way. Bench press, lift kettlebells, crush dumbbells — and watch your character instantly bulk up and grow right before your eyes.
+هدفُك في هذه اللعبة بسيط: أن تصبح ضخماً لدرجة تمكّنك من تحطيم جدران القلعة حرفياً وهزيمة كل زعيم يعترض طريقك. مارس تمارين الضغط (Bench Press)، وارفع أثقال "الكيتل بيل" (kettlebells) و"الدمبلز" (dumbbells)، وشاهد شخصيتك تزداد ضخامة وقوة أمام عينيك مباشرة.
 
-What awaits you: • Explosive visual growth — you literally GET BIGGER after every training session. • Online competitions — prove to your friends you’re a machine, not a human. • Ranking system — rise from rookie to mythical titan. • Tons of skins, hairstyles, and wings — become unstoppable. • Pets from eggs — collect powerful boosters and train X10 faster.
+إليك ما ينتظرك: • نمو بصري مذهل — ستصبح أضخم حجماً حرفياً بعد كل جلسة تدريب. • منافسات عبر الإنترنت — أثبت لأصدقائك أنك "آلة" لا تقهر ولست مجرد إنسان. • نظام تصنيف — ارتقِ من مستوى المبتدئ إلى مصاف العمالقة الأسطوريين. • تشكيلة واسعة من المظاهر (Skins) وتسريحات الشعر والأجنحة — لتصبح قوة لا تُقهر. • حيوانات أليفة تخرج من البيض — اجمع معززات قوية ودرب شخصيتك بسرعة مضاعفة 10 مرات.
 
-This is a game where progress is not just numbers — you SEE it. Every tap makes you stronger. You don’t grind… you DOMINATE.
+في هذه اللعبة، التقدم ليس مجرد أرقام — بل هو شيء تراه بوضوح؛ فكل نقرة تزيدك قوة. أنت لا تكتفي بمجرد "العمل الشاق" (Grinding)... بل تفرض هيمنتك وسيطرتك.
 
-Ready to be the one who breaks through the castle walls and enters the legends? Start your transformation right now!
+هل أنت مستعد لتكون الشخص الذي يحطم جدران القلعة ويدخل عالم الأساطير؟ ابدأ رحلة تحولك الآن!
         </div>
         <div class="email-box">طريقه اللعب</div>
         <div class="email-box">
-            On the computer: Space bar - jump WASD - move the character Left mouse button - swing Right mouse button - rotate the camera On a smartphone: Left joystick - move the character Tapping on the right side of the screen will rotate the camera A separate button for jumping Tapping on the screen anywhere - swing
+            على الكمبيوتر: مفتاح المسافة (Space) - القفز؛ مفاتيح WASD - تحريك الشخصية؛ زر الفأرة الأيسر - التأرجح؛ زر الفأرة الأيمن - تدوير الكاميرا. على الهاتف الذكي: عصا التحكم اليسرى - تحريك الشخصية؛ النقر على الجانب الأيمن من الشاشة - تدوير الكاميرا؛ زر منفصل للقفز؛ النقر في أي مكان على الشاشة - التأرجح.
         </div>
-    </div>
+        </section>
+    </main>
+    <script src="./script.js"></script>
 </body>
 
 </html>

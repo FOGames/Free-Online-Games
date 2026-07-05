@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html lang="AR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=EDGE">
+    <meta name="VIEWPORT" content="width=DEVICE-width,initial-scale=1.0">
+    <link rel="stylesheet" href="style_game.css" />
+    <title>سنيك 2048</title>
+    <meta name="description" content="ابدأ بمكعب صغير. التهم الثعابين الصغيرة وتجنب القوية منها. تحول إلى عملاق!
+
+ستجد في اللعبة:
+- متعة كبيرة
+- عناصر تحكم بسيطة وسريعة الاستجابة
+- إمكانية النمو بلا حدود
+- خصوم ضخام
+- منافسة على الصدارة
+- مستويين للصعوبة
+
+عناصر التحكم:
+الكمبيوتر — الفأرة: تحريك المكعب والنقر على الأزرار.
+الهاتف المحمول — الإصبع: توجيه المكعب في الاتجاه المطلوب والنقر على الأزرار.
+
+آليات اللعب الأساسية والقصة
+س: ما هو هدف اللعبة؟
+ج: التهم المكعبات لتكبر في الحجم، لكنك لست وحدك في الساحة. اقضِ على الخصوم الأصغر منك لتصبح أكبر حجماً!
+
+س: كيف تفوز / وماذا يُعتبر خسارة؟
+ج: الهدف هو أن تصبح الأكبر في الساحة. التهم المكعبات والخصوم الأصغر، لكن احذر: هناك دائماً من هو أكبر منك، وقد تصبح أنت وجبةً له!
+
+س: ما الذي يجذب الانتباه في الدقائق الأولى؟
+ج: رسومات وأصوات ممتعة تتفاعل بشكل رائع مع كل حركة تقوم بها بالمكعبات. لا يتعين عليك التهام الخصم بالكامل؛ إذ يمكنك مهاجمته على أجزاء. يترك كل لاعب أثراً من المكعبات الصغيرة: التهمها أولاً لتنمو، ثم هاجم الخصم. لكن تذكر: ذيلك قد يصبح أيضاً فريسة لشخص آخر!
+
+آليات اللعب والتقدم
+س: كم عدد المستويات / وهل الهيكل واضح؟
+ج: عدد لا نهائي من المستويات.
+
+س: هل تتغير الصعوبة؟
+ج: نعم، يتوفر وضعان للصعوبة. في الوضع الأعلى، سيكون الخصوم أكبر حجماً وأكثر عدداً منذ البداية.
+
+س: كيف يمكنني الارتقاء في المستوى بشكل أسرع؟
+ج: التهم المزيد من المكعبات؛ سيزداد حجمك. حتى لو تم التهامك، تظل جميع المكعبات التي التهمتها سابقاً معك، مما يتيح لك البدء بميزة في اللعبة التالية.
+
+س: ما الذي يتم فتحه (إتاحته) أثناء اللعب؟
+ج: إمكانية البدء بمكعب أكبر حجماً. كما يتحسن مستوى الخصوم أيضاً؛ إذ يصبحون أقوى.
+
+الاقتصاد والتخصيص
+س: ما الذي يمكن شراؤه أو تحسينه؟
+ج: يمكنك استخدام المكعبات التي تجمعها لترقية خصائص مكعبك.
+
+س: هل توجد أشكال (Skins) أو خيارات للتخصيص؟
+ج: نعم، يمكنك تغيير لون الساحة.
+
+الاحتفاظ بالمستخدمين والتفاعل  
+س: هل الصوت ضروري؟  
+ج: الصوت ليس ضرورياً؛ فكل شيء واضح منذ اللحظات الأولى. ومع ذلك، فإن وجود الصوت يجعل التغذية الراجعة المصاحبة لكل إجراء أكثر حيوية وتأثيراً، مما يعزز تجربة الانغماس في اللعبة.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mirza:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZ0LRGTJJK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MZ0LRGTJJK');
+    </script>
+    <link rel="icon" href="favicon.png" type="image/png">
+</head>
+
+<body>
+    <header>
+        <section id="header">
+            <div class="translate-wrapper">
+        <button class="main-translate-btn" id="translateBtn" onclick="toggleTranslateMenu()">
+            🌐 Language
+        </button>
+        
+        <div class="languages-dropdown" id="languagesDropdown">
+            <button onclick="changeLanguage('ar')">🇪🇬 العربية</button>
+            <button onclick="changeLanguage('en')">🇬🇧 English</button>
+            <button onclick="changeLanguage('es')">🇪🇸 Español</button>
+            <button onclick="changeLanguage('ru')">🇷🇺 Русский</button>
+            <button onclick="changeLanguage('fr')">🇫🇷 Français</button>
+        </div>
+    </div>
+
+    <div id="google_translate_element" style="display:none;"></div>
+
+
+    <script src="script.js"></script>
+    
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+            <a href="index.html">الرئيسية</a>
+        </section>
+    </header>
+    <main>
+        <section id="section-1">
+            <div id="full-screen">
+                <button onclick="expandGame()"><span class="fs-icon"></span> ملء الشاشه</button>
+            </div>
+            <div id="Share">
+                <button type="button" id="shareBtn" class="fs-button">
+                    <span>مشاركة</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+                    </svg>
+                </button>
+            </div>
+        </section>
+        <section>
+            <script>
+                function expandGame() {
+                    var gameElement = document.getElementById("game-container");
+
+                    if (gameElement.requestFullscreen) {
+                        gameElement.requestFullscreen();
+                    } else if (gameElement.webkitRequestFullscreen) {
+                        gameElement.webkitRequestFullscreen();
+                    }
+                }
+            </script>
+            <div id="game-container" class="Games-links" style="text-align: center;">
+                <iframe id="game-id"
+                    src="https://playgama.com/export/game/snake-2048-64be-1?clid=p_a383bcc2-0945-44fa-ad7d-bd13a7ad12e1"></iframe>
+            </div>
+        </section>
+        <section>
+        <div class="email-box">عن</div>
+        <div class="email-box">
+           ابدأ بمكعب صغير. التهم الثعابين الصغيرة وتجنب القوية منها. تحول إلى عملاق!
+
+ستجد في اللعبة:
+- متعة كبيرة
+- عناصر تحكم بسيطة وسريعة الاستجابة
+- إمكانية النمو بلا حدود
+- خصوم ضخام
+- منافسة على الصدارة
+- مستويين للصعوبة
+
+عناصر التحكم:
+الكمبيوتر — الفأرة: تحريك المكعب والنقر على الأزرار.
+الهاتف المحمول — الإصبع: توجيه المكعب في الاتجاه المطلوب والنقر على الأزرار.
+
+آليات اللعب الأساسية والقصة
+س: ما هو هدف اللعبة؟
+ج: التهم المكعبات لتكبر في الحجم، لكنك لست وحدك في الساحة. اقضِ على الخصوم الأصغر منك لتصبح أكبر حجماً!
+
+س: كيف تفوز / وماذا يُعتبر خسارة؟
+ج: الهدف هو أن تصبح الأكبر في الساحة. التهم المكعبات والخصوم الأصغر، لكن احذر: هناك دائماً من هو أكبر منك، وقد تصبح أنت وجبةً له!
+
+س: ما الذي يجذب الانتباه في الدقائق الأولى؟
+ج: رسومات وأصوات ممتعة تتفاعل بشكل رائع مع كل حركة تقوم بها بالمكعبات. لا يتعين عليك التهام الخصم بالكامل؛ إذ يمكنك مهاجمته على أجزاء. يترك كل لاعب أثراً من المكعبات الصغيرة: التهمها أولاً لتنمو، ثم هاجم الخصم. لكن تذكر: ذيلك قد يصبح أيضاً فريسة لشخص آخر!
+
+آليات اللعب والتقدم
+س: كم عدد المستويات / وهل الهيكل واضح؟
+ج: عدد لا نهائي من المستويات.
+
+س: هل تتغير الصعوبة؟
+ج: نعم، يتوفر وضعان للصعوبة. في الوضع الأعلى، سيكون الخصوم أكبر حجماً وأكثر عدداً منذ البداية.
+
+س: كيف يمكنني الارتقاء في المستوى بشكل أسرع؟
+ج: التهم المزيد من المكعبات؛ سيزداد حجمك. حتى لو تم التهامك، تظل جميع المكعبات التي التهمتها سابقاً معك، مما يتيح لك البدء بميزة في اللعبة التالية.
+
+س: ما الذي يتم فتحه (إتاحته) أثناء اللعب؟
+ج: إمكانية البدء بمكعب أكبر حجماً. كما يتحسن مستوى الخصوم أيضاً؛ إذ يصبحون أقوى.
+
+الاقتصاد والتخصيص
+س: ما الذي يمكن شراؤه أو تحسينه؟
+ج: يمكنك استخدام المكعبات التي تجمعها لترقية خصائص مكعبك.
+
+س: هل توجد أشكال (Skins) أو خيارات للتخصيص؟
+ج: نعم، يمكنك تغيير لون الساحة.
+
+الاحتفاظ بالمستخدمين والتفاعل  
+س: هل الصوت ضروري؟  
+ج: الصوت ليس ضرورياً؛ فكل شيء واضح منذ اللحظات الأولى. ومع ذلك، فإن وجود الصوت يجعل التغذية الراجعة المصاحبة لكل إجراء أكثر حيوية وتأثيراً، مما يعزز تجربة الانغماس في اللعبة.
+        </div>
+        <div class="email-box">طريقه اللعب</div>
+        <div class="email-box">
+            تناول المكعبات التي تقل كتلتها عن كتلتك أو تماثلها. ستخسر إذا اصطدمت بمكعب ذي كتلة أكبر. تحوّل إلى عملاق! على الحاسوب: يتحرك الثعبان باتجاه المؤشر. على الهاتف: استخدم عصا التحكم لتوجيه الثعبان.
+        </div>
+        </section>
+    </main>
+    <script src="./script.js"></script>
+</body>
+
+</html>

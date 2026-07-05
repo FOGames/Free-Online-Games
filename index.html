@@ -1,143 +1,119 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="AR">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-COMPATIBLE" content="IE=EDGE">
-    <meta name="VIEWPORT" content="width=DEVICE-width,initial-scale=1.0">
-    <meta name="description" content=" العابك المفضله بدون تحميل ، العاب مجانيه للئجهزه الضعيفه بدون تحميل ، .منصه العاب اونلاين مجانيه ، استمتع بافضل العاب المتصفح بدون تحميل ، Free Online Games">
-    <link rel="stylesheet" href="style.css" />
     <title>FO.Games</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Mirza:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-        }
-    </style>
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MZ0LRGTJJK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+    <meta name="description"
+        content=" العابك المفضله بدون تحميل ، العاب مجانيه للئجهزه الضعيفه بدون تحميل ، .منصه العاب اونلاين مجانيه ، استمتع بافضل العاب المتصفح بدون تحميل ، Free Online Games">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  gtag('config', 'G-MZ0LRGTJJK');
-</script>
-<link rel="icon" href="favicon.png" type="image/png">
+
+    <!-- Fontawsome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- style css -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZ0LRGTJJK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-MZ0LRGTJJK');
+    </script>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
-    <div class="content">
-   <!-- في الـ body مكان الزرار القديم -->
-<p id="p">
-  Language: 
-  <select id="language-picker" onchange="changeLanguage(this.value)">
-    <option value="ar">العربية</option>
-    <option value="en">English</option>
-    <option value="fr">Français</option>
-    <option value="es">Español</option>
-    <option value="de">Deutsch</option>
-    <option value="it">Italiano</option>
-  </select>
-</p>
-
-<!-- عنصر جوجل للترجمة (مخفي) -->
-<div id="google_translate_element" style="display:none;"></div>
-
-<script type="text/javascript">
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({
-    pageLanguage: 'ar', 
-    includedLanguages: 'ar,en,fr,es,de,it', 
-    layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-    autoDisplay: false
-  }, 'google_translate_element');
-}
-
-function changeLanguage(langCode) {
-  var selectEl = document.querySelector('.goog-te-combo');
-  if (selectEl) {
-    selectEl.value = langCode;
-    selectEl.dispatchEvent(new Event('change'));
-  } else {
-    setTimeout(function() { changeLanguage(langCode); }, 500);
-  }
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-        <img width="200"; border-radius: 8px; src=banner.png>
-        <div align="right" class="hander-link">
-            <a href="index.html">الرئيسيه</a>
-            <br />
-            <a href="New.html">جديد</a>
-            <br />
-            <a href="Best.html">افضل</a>
-            <br />
-            <a href="Race.html" target="_parent">سباق</a>
-            <br />
+    <header>
+        <section class="header">
+            <img id="logo" src=banner.png>
             <a href="Girls.html">فتيات</a>
-        </div>
-    </div>
-    <div class="hero-section">
-        <div class="content-side">
-            <h1>
-                اهلا بك في موقع العاب مجانيه اونلاين
-            </h1>
-            <h2>
-                استمتع بوقتك
-            </h2>
-            <div class="sarsh">
-                <button>بحث</button>
-                <input type="text" placeholder="...ابدأ الكتابه" />
+            <a href="Race.html" target="_parent">سباق</a>
+            <a href="Best.html">افضل</a>
+            <a href="New.html">جديد</a>
+            <a href="index.html">الرئيسيه</a>
+        </section>
+    </header>
+    <main id="main">
+        <section id="games">
+            <button id="direct-install-btn" style=" display: none; background: #00f2fe; color: #000; padding: 10px 20px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; box-shadow: 0 0 15px #00f2fe; margin: auto; margin-bottom: 20px;">تثبيت الموقع علي الشاشه 📲💻</button>
+            <a href="./العب اللعبةمحاكي تطور الحيوانات.html" class="game-link"><img
+                    src="https://static.playgama.com/p-img/pg/backfill/game-117373/preview/791649366fa509c4554cbc5577153aec4f4b3b4dddcc595c7faed2b7b51e6869?width=448"
+                    width="32%" height="32%" alt="العب اللعبةمحاكي تطور الحيوانات" /></a>
+            <a href="./سيد الفرز الجيد المطابقه الثلاثيه.html" class="game-link"><img
+                    src="https://static.playgama.com/p-img/pg/backfill/game-46/preview/5a9572290892cfac1e71f82aae6f7fe97f01997039a530296c736793b8bf9970?width=448"
+                    width="32%" height="32%" alt="سيد الفرز الجيد المطابقه الثلاثيه" /></a>
+            <a href="./لعبة ماهجونغ الكلاسيكية.html" class="game-link"><img
+                    src="https://static.playgama.com/p-img/pg/backfill/game-121631/preview/37d6479d4890cc2d95ff713d7ac4b55cd28e4b01164d3e99be9bd48dc81f3d4b?width=448"
+                    alt="لعبة ماهجونغ الكلاسيكية" width="32%" height="32%" /></a>
+            <a href="./انقر علي مكعب خشبي ثلاثي الابعاد.html" class="game-link"><img
+                    src="https://static.playgama.com/p-img/pg/backfill/game-95758/preview/f0c90f5951de5a4517cbb66eb1d4c8ad76b8c4d9256ed0dfea3eb665b3b744a3?width=448"
+                    alt="انقر على مكعب خشبي ثلاثي الأبعاد" width="32%" height="32%"></a>
+            <a href="./لعبه محاكاه الصاله الرياضيه عبر الانترنت ، الهروب.html" class="game-link"><img
+                    src="https://static.playgama.com/p-img/pg/backfill/game-113673/preview/1fed244af53ca39e3516a2fe6e2c264c96afbe76f01e84a5126cf61f0049a476?width=448"
+                    alt="لعبه محاكاه الصاله الرياضيه عبر الانترنت ، الهروب" width="32%" height="32%"></a>
+            <a href="./سهم هندسي 2.html" class="game-link"><img
+                    src="https://static.playgama.com/p-img/pg/backfill/game-99645/preview/90df3206f7f0c706e6431b9ae58fc331d0ed13a11e547ce0271b720ff82e6b21?width=448"
+                    alt="سهم الهندسه 2" width="32%" height="32%"></a>
+            <a href="./سنيك 2048.html" class="game-link"><img
+                    src="https://static.playgama.com/p-img/pg/backfill/game-86383/preview/1f48c0ee45d05381f07882da14f04e7948fd2b7052389872f44baf0874867f24?width=448"
+                    alt="ثعبان 2048" width="32%" height="32%"></a>
+            <a href="./مستر الشطرنج.html" class="game-link"><img
+                    src="https://static.playgama.com/p-img/pg/backfill/game-86262/preview/1c62f03085d1455159c3a82b9d1968093e3ca439a46e1901b6153604d6cbbd86?width=448"
+                    alt="مستر الشطرنج" width="32%" height="32%"></a>
+        </section>
+        <cection id="menu-link">
+            <div class="menu"><a href="For Puzzles.html">لغز</a></div>
+            <div class="menu"><a href="Sports.html">رياضه</a></div>
+            <div class="menu"><a href="Cards.html">بطاقات</a></div>
+            <div class="menu"><a href="Jump and Run.html">اقفز و اركض</a></div>
+            <div class="menu"><a href="Arcade Games.html">العاب الاركيد</a></div>
+            <div class="menu"><a href="multiplayer.html">متعدد اللاعبين</a></div>
+            <div class="menu"><a href="match 3.html">المباراه 3</a></div>
+            <div class="menu"><a href="bubble shooter.html">لعب اطلاق الفقاعات</a></div>
+            <div class="menu"><a href="card games.html">العاب الورق</a></div>
+            <div class="menu"><a href="All Games.html">جميع الالعاب</a></div>
+            <div class="menu"><a href="privacy.html">سياسة الخصوصيه</a></div>
+            <div class="menu"><a href="Contact Us.html">اتصل بنا</a></div>
+        </cection>
+    </main>
+    <footer id="footer">
+        <h3>تابعنا</h3>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-tiktok"></i></a>
+
+        <div class="translate-wrapper">
+            <button class="main-translate-btn" id="translateBtn" onclick="toggleTranslateMenu()">
+                🌐Language
+            </button>
+
+            <div class="languages-dropdown" id="languagesDropdown">
+                <button onclick="changeLanguage('ar')">🇪🇬 العربية</button>
+                <button onclick="changeLanguage('en')">🇬🇧 English</button>
+                <button onclick="changeLanguage('es')">🇪🇸 Español</button>
+                <button onclick="changeLanguage('ru')">🇷🇺 Русский</button>
+                <button onclick="changeLanguage('fr')">🇫🇷 Français</button>
             </div>
         </div>
-        <div class="hander">
-            <img src="https://i.pinimg.com/736x/ca/00/1d/ca001d19bc43902e83ac9c692555e978.jpg" width="200"
-                align="left" />
-        </div>
-    </div>
-    <div>
-        <div class="Games-links" style="text-align: center; margin-top: 20px;">
-        <a href="./العب اللعبةمحاكي تطور الحيوانات.html"><img src="https://static.playgama.com/p-img/pg/backfill/game-117373/icon/38661f58e500be9e22b90462d962c6620029db49314709595e5f09edaf1d7b68?width=448" width="32%" height="32%" /></a>
-        <a href="./سيد الفرز الجيد المطابقه الثلاثيه.html"><img src="https://static.playgama.com/p-img/pg/backfill/game-46/icon/c0a46a5e5ca0f818973da4fe340b68b9ab6d9cce73ea4babad9e167ef9393bd0?width=448" width="32%" height="32%"/></a>
-        <a href="./لعبة ماهجونغ الكلاسيكية.html"><img src="https://static.playgama.com/p-img/pg/backfill/game-121631/icon/d9cc661f648e2ba097c3bcf8433389c2033d164a01beb9d2ac4e4bd4ccfb8080?width=448" alt="لعبة ماهجونغ الكلاسيكية" width="32%" height="32%"/></a>
-        <a href="./انقر على مكعب خشبي ثلاثي الأبعاد.html"><img src="https://static.playgama.com/p-img/pg/backfill/game-95758/icon/bbf98b3579c8d3fd2ea65a1d16f68b4a1848ebb5b70dd65dfaf9c7a4c18df71a?width=448" alt="انقر على مكعب خشبي ثلاثي الأبعاد" width="32%" height="32%"></a>
-        <a href="./لعبه محاكاه الصاله الرياضيه عبر الانترنت ، الهروب.html"><img src="https://static.playgama.com/p-img/pg/backfill/game-113673/icon/24a9c285c663f1c66e8caefd40829a9cbebdd1fa09e668594d8d03108b30b22b?width=448" alt="لعبه محاكاه الصاله الرياضيه عبر الانترنت ، الهروب" width="32%" height="32%"></a>
-        </div>
-    </div>
-    <div class="content">
-        <div align="right" class="hander-link">
-            <br />
-            <a href="For Puzzles.html">لغز</a>
-            <br />
-            <a href="Sports.html">رياضه</a>
-            <br />
-            <a href="Cards.html">بطاقات</a> 
-            <br />
-            <a href="Jump and Run.html">اقفز و اركض</a>
-            <br />
-            <a href="Arcade Games.html">العاب الاركيد</a>
-            <br />
-            <a href="multiplayer.html">متعدد اللاعبين</a>
-            <br />
-            <a href="match 3.html">المباراه 3</a>
-            <br />
-            <a href="bubble shooter.html">لعب اطلاق الفقاعات</a>
-            <br />
-            <a href="card games.html">العاب الورق</a>
-            <br />
-            <a href="All Games.html">جميع الالعاب</a>
-            <br />
-            <a href="privacy.html">سياسة الخصوصيه</a>
-            <br />
-            <a href="Contact Us.html">اتصل بنا</a>
-            <br />
-            <p>مع تحياتي </p>
-            <br />
-        </div>
-    </div>
+
+        <div id="google_translate_element" style="display:none;"></div>
+
+
+        <script src="script.js"></script>
+
+        <script type="text/javascript"
+            src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    </footer>
 </body>
 
 </html>

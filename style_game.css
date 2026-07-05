@@ -1,0 +1,225 @@
+@import url('https://fonts.googleapis.com/css2?family=Scheherazade+New:wght@400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+body {
+    font-family: "Scheherazade New", serif;
+    font-weight: 600;
+}
+
+/* header Start */
+#header {
+    display: flex;
+    background-color: #1259ca;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#header a {
+    color: #fff;
+    text-decoration: none;
+    padding-right: 20px;
+}
+
+#header a:hover {
+    background-color: #0091ff;
+    padding: 10px 20px;
+    border-radius: 100px;
+}
+/* header End */
+
+/* section game Start */
+
+/* button start */
+#section-1 {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: #9a9a9a;
+}
+
+.fs-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    vertical-align: middle;
+}
+
+#full-screen {
+    text-align: center;
+    background-color: #9a9a9a;
+}
+
+#full-screen button{
+    font-weight: 900;
+    background-color: #9a9a9a;
+    cursor: pointer;
+}
+
+#Share {
+     text-align: center;
+    background-color: #9a9a9a;
+}
+
+#Share button {
+     font-weight: 900;
+    background-color: #9a9a9a;
+    cursor: pointer;
+}
+/* button End */
+
+.Games-links {
+    width: 100% !important;
+    height: 500px !important;
+    margin: 20px 0;
+    overflow: hidden;
+    border: 3px solid #333;
+    border-radius: 12px;
+}
+.Games-links:fullscreen {
+    width: 100vw;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+}
+.Games-links iframe {
+    display: block;
+    border: none;
+     width: 100%;
+      height:600px;
+}
+.Games-links:fullscreen iframe {
+    width: 100vw;
+    height: 100vh;
+}
+/* section game End */
+
+/* email box Start */
+.email-box {
+    background-color: #1259ca;
+    width: 98vw;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 10px 10px;
+    border-radius: 15px;
+}
+/* email box End */
+
+/* languge Start */
+
+/* حاوية الزر والقائمة الثابتة أسفل الشاشة */
+.translate-wrapper {
+    z-index: 9999;
+    font-family: Arial, sans-serif;
+}
+
+/* تصميم الزر الرئيسي */
+.main-translate-btn {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border: 2px solid #00ff66;
+    padding: 12px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.main-translate-btn:hover {
+    background-color: #00ff66;
+    color: #1a1a1a;
+    transform: translateY(-2px);
+}
+
+/* قائمة اللغات (مخفية بشكل افتراضي display: none) */
+.languages-dropdown {
+    display: none; 
+    position: absolute;
+    top: 55px; /* تفتح لأعلى حتى لا تخرج عن الشاشة */
+    left: 0;
+    background-color: #242424;
+    border: 1px solid #444;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    min-width: 170px;
+    flex-direction: column;
+}
+
+/* الكلاس الذي سيتم إضافته بالجافا سكريبت لإظهار القائمة */
+.languages-dropdown.show {
+    display: flex;
+}
+
+/* أزرار اللغات داخل القائمة المنسدلة */
+.languages-dropdown button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    width: 100%;
+}
+
+/* ضبط اتجاه النص للغة العربية فقط داخل القائمة */
+.languages-dropdown button:first-child {
+    text-align: right;
+}
+
+/* تأثير مرور الماوس على خيارات اللغات */
+.languages-dropdown button:hover {
+    background-color: #00ff66;
+    color: #1a1a1a;
+}
+
+/* إخفاء شريط أدوات جوجل المزعج تماماً للحفاظ على تصميمك */
+.goog-te-banner-frame, .skiptranslate iframe, .goog-te-balloon-frame {
+    display: none !important;
+    visibility: hidden !important;
+}
+body {
+    top: 0px !important;
+    
+    .scheherazade-new-semibold {
+  font-family: "Scheherazade New", serif;
+  font-weight: 600;
+  font-style: normal;
+}
+}
+/* languge End */
+
+
+/* حجم شريط التمرير */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* خلفية الشريط (المجرى اللي بيمشي فيه) */
+::-webkit-scrollbar-track {
+    background: #0d0d0d; 
+}
+
+/* الزرار نفسه اللي بتسحبه بالماوس */
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(to bottom, #00f2fe, #4facfe); /* تدريج ألوان نيون صايع */
+    border-radius: 10px;
+}
+
+/* لون الزرار لما تقف عليه بالماوس */
+::-webkit-scrollbar-thumb:hover {
+    background: #ff007f; /* يقلب وردي نيون حماسي */
+}
