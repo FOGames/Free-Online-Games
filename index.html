@@ -75,7 +75,7 @@
         #loading-trigger { grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted); }
 
       .game-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(7, 10, 19, 0.98); z-index: 200; display: none; flex-direction: column; }
-      .modal-top { display: flex; justify-content: space-between; align-items: center; padding: 15px 3%; background-color: var(--bg-card); border-bottom: 1px solid #27272a; }
+      .modal-top { align-items: center; padding: 15px 3%; background-color: var(--bg-card); border-bottom: 1px solid #27272a; }
       .modal-actions { display: flex; gap: 10px; }
       .modal-body { display: flex; flex-grow: 1; overflow: hidden; }
       .iframe-space { flex-grow: 1; height: 100%; background: #000; position: relative; }
@@ -96,7 +96,19 @@
           .scroll-btn { display: none!important; }
           .genres-wrapper { padding: 0; }
         }
-    </style>
+
+        @media (min-width= 1px) and (max-width= 900px) {
+        .modal-top {
+            display: block;
+        }
+
+        .modal-actions {
+            justify-content: space-around;
+            align-items: center;
+        }
+}
+        </style>
+        <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
@@ -107,7 +119,7 @@
         </div>
         <div class="nav-controls">
             <button id="btn-install"><i class="fa-solid fa-download"></i> <span class="lang-node" data-ar="تثبيت" data-en="Install" data-es="Instalar" data-fr="Installer" data-de="Installieren" data-pt="Instalar" data-ru="Установить" data-tr="Yükle" data-hi="इंस्टॉल" data-id="Pasang">تثبيت</span></button>
-            <button id="btn-lang"><i class="fa-solid fa-language"></i> <span>EN</span></button>
+            <button id="btn-lang"><i class="fa-solid fa-language"></i> <span>AR</span></button>
         </div>
     </header>
 
@@ -133,9 +145,9 @@
         <div class="modal-top">
             <h3 id="m-title">Game Title</h3>
             <div class="modal-actions">
-                <button id="btn-share"><i class="fa-solid fa-share-nodes"></i> <span class="lang-node" data-ar="مشاركة" data-en="Share">مشاركة</span></button>
-                <button id="btn-fullscreen"><i class="fa-solid fa-expand"></i> <span class="lang-node" data-ar="ملء الشاشة" data-en="Fullscreen">ملء الشاشة</span></button>
-                <button onclick="closeGame()"><i class="fa-solid fa-xmark"></i> <span class="lang-node" data-ar="إغلاق" data-en="Close">إغلاق</span></button>
+                <button id="btn-share"><i class="fa-solid fa-share-nodes"></i></button>
+                <button id="btn-fullscreen"><i class="fa-solid fa-expand"></i></button>
+                <button onclick="closeGame()"><i class="fa-solid fa-xmark"></i></button>
             </div>
         </div>
         <div class="modal-body">
