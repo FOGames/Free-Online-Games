@@ -8,120 +8,78 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="./icon.png">
     <link rel="manifest" href="manifest.json">
-    <meta name="description" content="العابك المفضله بدون تحميل ، العاب مجانيه للئجهزه الضعيفه بدون تحميل">
+    <meta name="description" content="ألعابك المفضلة بدون تحميل، ألعاب مجانية للأجهزة الضعيفة">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZ0LRGTJJK"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-MZ0LRGTJJK');</script>
-
-    <style>
-        :root {
-            --bg-main: #0b0f19; --bg-card: #111827; --bg-hover: #1f2937;
-            --text-main: #f9fafb; --text-muted: #9ca3af;
-            --primary: #6366f1; --primary-hover: #4f46e5;
-            --font-site: 'Cairo', sans-serif;
-        }
-        [dir="ltr"] { --font-site: 'Inter', sans-serif; }
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { background-color: var(--bg-main); color: var(--text-main); font-family: var(--font-site); overflow-x: hidden; }
-
-        header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; padding: 15px 4%; background-color: rgba(17, 24, 39, 0.85); backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #374151; gap: 15px; }
-      .logo { font-size: 26px; font-weight: 700; color: var(--primary); text-decoration: none; }
-
-      .search-box { position: relative; flex-grow: 1; max-width: 400px; min-width: 200px; }
-      .search-box input { width: 100%; padding: 10px 40px 10px 15px; background-color: var(--bg-main); border: 1px solid #374151; border-radius: 25px; color: white; font-family: inherit; outline: none; }
-        [dir="ltr"].search-box input { padding: 10px 15px 10px 40px; }
-      .search-box i { position: absolute; top: 50%; transform: translateY(-50%); right: 15px; color: var(--text-muted); }
-        [dir="ltr"].search-box i { left: 15px; right: auto; }
-
-      .nav-controls { display: flex; gap: 10px; flex-wrap: wrap; }
-        button { background-color: var(--bg-card); color: var(--text-main); border: 1px solid #374151; padding: 10px 14px; border-radius: 8px; cursor: pointer; font-family: inherit; font-size: 14px; display: flex; align-items: center; gap: 6px; transition: all 0.2s ease; }
-        button:hover { background-color: var(--primary); border-color: var(--primary); }
-        #btn-install { background-color: var(--primary); border: none; display: none; }
-
-      .genres-wrapper { position: relative; display: flex; align-items: center; padding: 0 45px; }
-      .genres-bar { display: flex; gap: 10px; padding: 15px 0; overflow-x: auto; white-space: nowrap; scrollbar-width: none; scroll-behavior: smooth; }
-      .genres-bar::-webkit-scrollbar { display: none; }
-      .scroll-btn { position: absolute; z-index: 10; background: rgba(0,0,0,0.7); border: none; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: 0.2s; top: 50%; transform: translateY(-50%); }
-      .scroll-btn:hover { background: var(--primary); }
-      .scroll-left { left: 5px; }.scroll-right { right: 5px; }
-        [dir="ltr"].scroll-left { left: auto; right: 5px; } [dir="ltr"].scroll-right { right: auto; left: 5px; }
-
-      .genre-chip { background-color: var(--bg-card); padding: 8px 16px; border-radius: 20px; font-size: 13px; cursor: pointer; border: 1px solid #27272a; transition: all 0.2s; flex-shrink: 0; }
-      .genre-chip.active,.genre-chip:hover { background-color: var(--primary); color: white; }
-
-      .filter-tabs { display: flex; gap: 10px; padding: 0 4% 15px; flex-wrap: wrap; }
-      .filter-tab { background: var(--bg-card); padding: 8px 16px; border-radius: 8px; cursor: pointer; border: 1px solid #27272a; font-size: 13px; }
-      .filter-tab.active { background: var(--primary); }
-
-      .games-grid { max-width: 1600px; margin: 0 auto; padding: 20px 4%; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 25px; }
-      .game-card { background-color: var(--bg-card); border-radius: 14px; overflow: hidden; border: 1px solid #27272a; transition: all 0.3s; cursor: pointer; position: relative; }
-      .game-card:hover { transform: translateY(-6px); box-shadow: 0 12px 24px -10px rgba(99, 102, 241, 0.5); border-color: var(--primary); }
-
-      .media-holder { width: 100%; aspect-ratio: 16 / 11; position: relative; background-color: #000; }
-      .game-img { width: 100%; height: 100%; object-fit: cover; }
-
-      .card-badges { position: absolute; top: 8px; right: 8px; display: flex; gap: 5px; z-index: 5; }
-        [dir="ltr"].card-badges { right: auto; left: 8px; }
-      .badge { background: rgba(0,0,0,0.75); padding: 4px 8px; border-radius: 6px; font-size: 11px; backdrop-filter: blur(4px); }
-      .fav-btn { position: absolute; top: 8px; left: 8px; background: rgba(0,0,0,0.7); border: none; border-radius: 50%; width: 30px; height: 30px; z-index: 5; color: white; }
-      .fav-btn.active { color: #ef4444; }
-        [dir="ltr"].fav-btn { left: auto; right: 8px; }
-
-      .game-meta { padding: 14px; }
-      .game-title { font-weight: 700; font-size: 15px; margin-bottom: 5px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .game-genres-list { font-size: 12px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-      .game-stats { display: flex; justify-content: space-between; font-size: 11px; color: var(--text-muted); margin-top: 5px; }
-
-        #loading-trigger { grid-column: 1/-1; text-align: center; padding: 40px; color: var(--text-muted); }
-
-      .game-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(7, 10, 19, 0.98); z-index: 200; display: none; flex-direction: column; }
-      .modal-top { align-items: center; padding: 15px 3%; background-color: var(--bg-card); border-bottom: 1px solid #27272a; }
-      .modal-actions { display: flex; gap: 10px; }
-      .modal-body { display: flex; flex-grow: 1; overflow: hidden; }
-      .iframe-space { flex-grow: 1; height: 100%; background: #000; position: relative; }
-      .iframe-space iframe { width: 100%; height: 100%; border: none; }
-
-      .details-sidebar { width: 380px; min-width: 380px; background-color: var(--bg-card); border-left: 1px solid #27272a; display: flex; flex-direction: column; overflow-y: auto; padding: 20px; gap: 20px; }
-        [dir="ltr"].details-sidebar { border-left: none; border-right: 1px solid #27272a; }
-      .details-sidebar h4 { color: var(--primary); font-size: 16px; border-bottom: 1px solid #374151; padding-bottom: 5px; }
-      .details-text { font-size: 13px; color: #d1d5db; line-height: 1.6; white-space: pre-line; }
-      .info-row { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; border-bottom: 1px solid #1f2937; }
-      .tags-container { display: flex; flex-wrap: wrap; gap: 6px; }
-      .tag-item { background: var(--bg-hover); padding: 4px 10px; border-radius: 6px; font-size: 11px; color: var(--text-muted); }
-
-        @media (max-width: 992px) {
-          .modal-body { flex-direction: column; overflow-y: auto; }
-          .iframe-space { height: 60vh; min-height: 400px; }
-          .details-sidebar { width: 100%; min-width: 100%; }
-          .scroll-btn { display: none!important; }
-          .genres-wrapper { padding: 0; }
-        }
-
-        @media (min-width= 1px) and (max-width= 900px) {
-        .modal-top {
-            display: block;
-        }
-
-        .modal-actions {
-            justify-content: space-around;
-            align-items: center;
-        }
-}
-        </style>
-        <link rel="stylesheet" href="style.css">
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-MZ0LRGTJJK');
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="google_translate_element" style="display:none;"></div>
+
     <header>
         <a href="#" class="logo">FO.Games</a>
         <div class="search-box">
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="search-input" placeholder="ابحث عن لعبتك المفضلة..." data-ar="ابحث عن لعبتك المفضلة..." data-en="Search your favorite game..." data-es="Busca tu juego favorito..." data-fr="Recherchez votre jeu préféré..." data-de="Suchen Sie nach Ihrem Lieblingsspiel..." data-pt="Pesquise seu jogo favorito..." data-ru="Найдите свою любимую игру..." data-tr="Favori oyununuzu arayın..." data-hi="अपना पसंदीदा गेम खोजें..." data-id="Cari game favoritmu...">
+            <input type="text" id="search-input" placeholder="ابحث عن لعبتك المفضلة...">
         </div>
         <div class="nav-controls">
-            <button id="btn-install"><i class="fa-solid fa-download"></i> <span class="lang-node" data-ar="تثبيت" data-en="Install" data-es="Instalar" data-fr="Installer" data-de="Installieren" data-pt="Instalar" data-ru="Установить" data-tr="Yükle" data-hi="इंस्टॉल" data-id="Pasang">تثبيت</span></button>
-            <button id="btn-lang"><i class="fa-solid fa-language"></i> <span>AR</span></button>
+            <button id="btn-random" onclick="playRandomGame()"><i class="fa-solid fa-dice"></i> <span>جرب حظك</span></button>
+            <button id="btn-kids" onclick="toggleKidsMode()"><i class="fa-solid fa-child"></i> <span id="kids-label">الأطفال: إيقاف</span></button>
+            <button onclick="sharePlatform()"><i class="fa-solid fa-share-nodes"></i> <span>مشاركة</span></button>
+            <button onclick="toggleMainQRCode()"><i class="fa-solid fa-qrcode"></i> <span>QR</span></button>
+            <button id="btn-theme" onclick="toggleTheme()"><i class="fa-solid fa-moon" id="theme-icon"></i></button>
+            <button class="btn-translate-custom" onclick="openTranslateModal()">
+                <i class="fa-solid fa-language"></i> <span>الترجمة</span>
+            </button>
+            <button id="btn-install" style="display:none;"><i class="fa-solid fa-download"></i> <span>تثبيت</span></button>
         </div>
     </header>
+
+    <div class="generic-modal" id="translateModal">
+        <div class="modal-content text-center max-w-translate">
+            <h3><i class="fa-solid fa-language"></i> اختر لغة الترجمة</h3>
+            <hr class="modal-divider">
+            <p class="modal-subtext">اختر اللغة وسيتم تطبيق الترجمة فوراً:</p>
+            <div class="lang-options-grid">
+                <button onclick="selectLanguage('ar')">🇸🇦 العربية</button>
+                <button onclick="selectLanguage('en')">🇺🇸 English</button>
+                <button onclick="selectLanguage('fr')">🇫🇷 Français</button>
+                <button onclick="selectLanguage('de')">🇩🇪 Deutsch</button>
+                <button onclick="selectLanguage('es')">🇪🇸 Español</button>
+                <button onclick="selectLanguage('ru')">🇷🇺 Русский</button>
+            </div>
+            <br>
+            <button class="btn-modal-close" onclick="closeTranslateModal()">إغلاق</button>
+        </div>
+    </div>
+
+    <div id="main-qr-modal" class="generic-modal">
+        <div class="modal-content text-center">
+            <h3>رمز QR الخاص بالمنصة</h3>
+            <hr class="modal-divider">
+            <div id="main-qrcode" class="qr-box"></div>
+            <p class="modal-subtext">امسح الرمز لفتح المنصة مباشرة على الهاتف</p>
+            <br>
+            <button class="btn-modal-close" onclick="toggleMainQRCode()">إغلاق</button>
+        </div>
+    </div>
+
+    <div class="featured-slider">
+        <div class="slider-track" id="featured-slider-container"></div>
+    </div>
+
+    <div id="resume-banner" style="display:none;">
+        <span><i class="fa-solid fa-clock-rotate-left"></i> <span>أكمل اللعب من حيث توقفت:</span> <strong id="resume-title">--</strong></span>
+        <button onclick="resumeLastGame()"><i class="fa-solid fa-play"></i> <span>تشغيل</span></button>
+    </div>
 
     <div class="genres-wrapper">
         <button class="scroll-btn scroll-left" id="scrollLeft"><i class="fa-solid fa-chevron-left"></i></button>
@@ -130,193 +88,89 @@
     </div>
 
     <div class="filter-tabs">
-        <div class="filter-tab active" data-filter="all"><span class="lang-node" data-ar="الكل" data-en="All" data-es="Todo" data-fr="Tout" data-de="Alle" data-pt="Todos" data-ru="Все" data-tr="Tümü" data-hi="सभी" data-id="Semua">الكل</span></div>
-        <div class="filter-tab" data-filter="popular"><span class="lang-node" data-ar="الاكثر شعبية" data-en="Popular" data-es="Popular" data-fr="Populaire" data-de="Beliebt" data-pt="Popular" data-ru="Популярное" data-tr="Popüler" data-hi="लोकप्रिय" data-id="Populer">الاكثر شعبية</span></div>
-        <div class="filter-tab" data-filter="new"><span class="lang-node" data-ar="جديد" data-en="New" data-es="Nuevo" data-fr="Nouveau" data-de="Neu" data-pt="Novo" data-ru="Новое" data-tr="Yeni" data-hi="नया" data-id="Baru">جديد</span></div>
-        <div class="filter-tab" data-filter="played"><span class="lang-node" data-ar="لعبتها" data-en="Played" data-es="Jugado" data-fr="Joué" data-de="Gespielt" data-pt="Jogado" data-ru="Играно" data-tr="Oynandı" data-hi="खेला" data-id="Dimainkan">لعبتها</span></div>
-        <div class="filter-tab" data-filter="favorites"><span class="lang-node" data-ar="المفضلة" data-en="Favorites" data-es="Favoritos" data-fr="Favoris" data-de="Favoriten" data-pt="Favoritos" data-ru="Избранное" data-tr="Favoriler" data-hi="पसंदीदा" data-id="Favorit">المفضلة</span></div>
+        <div class="filter-tab active" data-filter="all">الكل</div>
+        <div class="filter-tab" data-filter="popular">الأكثر شعبية</div>
+        <div class="filter-tab" data-filter="new">جديد</div>
+        <div class="filter-tab" data-filter="played">لعبتها</div>
+        <div class="filter-tab" data-filter="favorites">المفضلة</div>
+        <div class="filter-tab" data-filter="desktop"><i class="fa-solid fa-desktop"></i> كمبيوتر</div>
+        <div class="filter-tab" data-filter="mobile"><i class="fa-solid fa-mobile-screen"></i> الهاتف</div>
+    </div>
+
+    <div id="page-404" style="display:none;">
+        <h1>404</h1>
+        <h2>عذراً، اللعبة التي تبحث عنها غير موجودة!</h2>
+        <br>
+        <button onclick="close404()"><i class="fa-solid fa-house"></i> العودة للرئيسية</button>
     </div>
 
     <main class="games-grid" id="games-holder">
-        <div id="loading-trigger"><i class="fa-solid fa-circle-notch fa-spin"></i> <span class="lang-node" data-ar="جاري استدعاء الألعاب..." data-en="Loading Games Database...">جاري استدعاء الألعاب...</span></div>
+        <div id="loading-trigger"><i class="fa-solid fa-circle-notch fa-spin"></i> <span>جاري استدعاء الألعاب...</span></div>
     </main>
 
-    <div class="game-modal" id="gameModal">
+    <div class="game-modal" id="gameModal" style="display:none;">
         <div class="modal-top">
             <h3 id="m-title">Game Title</h3>
             <div class="modal-actions">
-                <button id="btn-share"><i class="fa-solid fa-share-nodes"></i></button>
-                <button id="btn-fullscreen"><i class="fa-solid fa-expand"></i></button>
-                <button onclick="closeGame()"><i class="fa-solid fa-xmark"></i></button>
+                <button class="modal-icon-btn" id="btn-fav-modal" onclick="toggleFavCurrent()" title="المفضلة"><i class="fa-solid fa-heart"></i></button>
+                <button class="modal-icon-btn btn-translate-game" onclick="openTranslateModal()" title="ترجمة"><i class="fa-solid fa-language"></i></button>
+                <button class="modal-icon-btn" id="btn-share" onclick="shareCurrentGame()" title="مشاركة"><i class="fa-solid fa-share-nodes"></i></button>
+                <button class="modal-icon-btn" id="btn-qr" onclick="toggleGameQRCode()" title="رمز QR"><i class="fa-solid fa-qrcode"></i></button>
+                <button class="modal-icon-btn" id="btn-fullscreen" title="ملء الشاشة"><i class="fa-solid fa-expand"></i></button>
+                <button class="modal-icon-btn btn-close-modal" onclick="closeGame()" title="إغلاق"><i class="fa-solid fa-xmark"></i></button>
             </div>
+        </div>
+        <div id="qr-container" style="display:none;">
+            <div id="qrcode"></div>
+            <p class="qr-text">امسح رمز QR للفتح من الموبايل</p>
         </div>
         <div class="modal-body">
             <div class="iframe-space" id="iframe-container">
-                <iframe id="gameIframe" src="" allowfullscreen allow="fullscreen"></iframe>
+                <iframe id="gameIframe" src="" allowfullscreen allow="fullscreen; autoplay" loading="eager"></iframe>
             </div>
             <div class="details-sidebar">
-                <div><h4 class="lang-node" data-ar="عن اللعبة" data-en="About The Game">عن اللعبة</h4><p class="details-text" id="m-desc"></p></div>
-                <div><h4 class="lang-node" data-ar="كيفية اللعب" data-en="How To Play">كيفية اللعب</h4><p class="details-text" id="m-howto"></p></div>
-                <div><h4 class="lang-node" data-ar="معلومات" data-en="Info">معلومات</h4>
-                    <div class="info-row"><span class="lang-node" data-ar="مرات اللعب" data-en="Plays">مرات اللعب</span><span id="m-plays">0</span></div>
-                    <div class="info-row"><span class="lang-node" data-ar="التوجيه" data-en="Orientation">التوجيه</span><span id="m-orient">-</span></div>
-                    <div class="info-row"><span class="lang-node" data-ar="شراء داخل اللعبة" data-en="In-App Purchases">شراء داخل اللعبة</span><span id="m-purchases">-</span></div>
+                <div><h4>عن اللعبة</h4><p class="details-text" id="m-desc"></p></div>
+                <div><h4>كيفية اللعب</h4><p class="details-text" id="m-howto"></p></div>
+                <div><h4>معلومات</h4>
+                    <div class="info-row"><span>التوجيه</span><span id="m-orient">-</span></div>
+                    <div class="info-row"><span>شراء داخل اللعبة</span><span id="m-purchases">-</span></div>
+                    <div class="info-row"><span>الأجهزة المدعومة</span><span id="m-devices">-</span></div>
                 </div>
-                <div><h4 class="lang-node" data-ar="الوسوم" data-en="Tags">الوسوم</h4><div class="tags-container" id="m-tags"></div></div>
+                <div><h4>الوسوم</h4><div class="tags-container" id="m-tags"></div></div>
             </div>
         </div>
     </div>
 
-    <script>
-        let rawGames = []; let filteredGames = []; let displayedCount = 0;
-        const step = 24; let currentLang = 'ar'; let activeGenre = 'all'; let searchQuery = ''; let activeFilter = 'all'; let currentGame = null;
-        const langs = ['ar','en','es','fr','de','pt','ru','tr','hi','id'];
+    <div class="generic-modal" id="infoModal" style="display:none;">
+        <div class="modal-content">
+            <h3 id="info-modal-title"></h3>
+            <hr class="modal-divider">
+            <p id="info-modal-text" class="info-modal-desc"></p>
+            <br>
+            <button class="btn-modal-close" onclick="document.getElementById('infoModal').style.display='none'">إغلاق</button>
+        </div>
+    </div>
 
-        const translations = {
-            ar: {all:'الكل', popular:'الاكثر شعبية', new:'جديد', played:'لعبتها', favorites:'المفضلة', plays:'مرات اللعب', yes:'نعم', no:'لا', horizontal:'أفقي', vertical:'رأسي', copied:'تم نسخ الرابط'},
-            en: {all:'All', popular:'Popular', new:'New', played:'Played', favorites:'Favorites', plays:'Plays', yes:'Yes', no:'No', horizontal:'Horizontal', vertical:'Vertical', copied:'Link Copied'},
-            es: {all:'Todo', popular:'Popular', new:'Nuevo', played:'Jugado', favorites:'Favoritos', plays:'Jugadas', yes:'Sí', no:'No', horizontal:'Horizontal', vertical:'Vertical', copied:'Enlace copiado'},
-            fr: {all:'Tout', popular:'Populaire', new:'Nouveau', played:'Joué', favorites:'Favoris', plays:'Jeux', yes:'Oui', no:'Non', horizontal:'Horizontal', vertical:'Vertical', copied:'Lien copié'},
-            de: {all:'Alle', popular:'Beliebt', new:'Neu', played:'Gespielt', favorites:'Favoriten', plays:'Spiele', yes:'Ja', no:'Nein', horizontal:'Horizontal', vertical:'Vertikal', copied:'Link kopiert'},
-            pt: {all:'Todos', popular:'Popular', new:'Novo', played:'Jogado', favorites:'Favoritos', plays:'Jogadas', yes:'Sim', no:'Não', horizontal:'Horizontal', vertical:'Vertical', copied:'Link copiado'},
-            ru: {all:'Все', popular:'Популярное', new:'Новое', played:'Играно', favorites:'Избранное', plays:'Игры', yes:'Да', no:'Нет', horizontal:'Горизонтально', vertical:'Вертикально', copied:'Ссылка скопирована'},
-            tr: {all:'Tümü', popular:'Popüler', new:'Yeni', played:'Oynandı', favorites:'Favoriler', plays:'Oynanış', yes:'Evet', no:'Hayır', horizontal:'Yatay', vertical:'Dikey', copied:'Bağlantı kopyalandı'},
-            hi: {all:'सभी', popular:'लोकप्रिय', new:'नया', played:'खेला', favorites:'पसंदीदा', plays:'खेल', yes:'हाँ', no:'नहीं', horizontal:'क्षैतिज', vertical:'ऊर्ध्वाधर', copied:'लिंक कॉपी किया'},
-            id: {all:'Semua', popular:'Populer', new:'Baru', played:'Dimainkan', favorites:'Favorit', plays:'Main', yes:'Ya', no:'Tidak', horizontal:'Horizontal', vertical:'Vertikal', copied:'Tautan disalin'}
-        };
+    <footer>
+        <div class="footer-links">
+            <a href="#" onclick="openFooterInfo('about'); return false;">عن الموقع</a>
+            <a href="#" onclick="openFooterInfo('contact'); return false;">تواصل معنا</a>
+            <a href="#" onclick="openFooterInfo('privacy'); return false;">سياسة الخصوصية</a>
+        </div>
+        <p>© 2026 FO.Games - جميع الحقوق محفوظة</p>
+    </footer>
 
-        function t(key){ return translations[currentLang][key] || translations['en'][key]; }
-
-        async function initPlatform() {
-            try {
-                const res = await fetch('games.json');
-                const data = await res.json();
-                rawGames = data.segments[0].hits.map((g,i)=>({...g, playCount: parseInt(localStorage.getItem(`plays_${g.id}`)||0), isNew: i<5 }));
-                buildGenresBar(); applyFilters(); setupScrollButtons();
-            } catch (err) { console.error("فشل تحميل games.json", err); }
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'ar',
+                includedLanguages: 'ar,en,fr,de,es,ru',
+                autoDisplay: false,
+                layout: 0
+            }, 'google_translate_element');
         }
-
-        function buildGenresBar() {
-            const container = document.getElementById('genres-container');
-            const allGenres = new Set(); rawGames.forEach(g => g.genres && g.genres.forEach(genre => allGenres.add(genre)));
-            let html = `<div class="genre-chip active" data-genre="all">${t('all')}</div>`;
-            allGenres.forEach(genre => { html += `<div class="genre-chip" data-genre="${genre}">${genre}</div>`; });
-            container.innerHTML = html;
-            container.querySelectorAll('.genre-chip').forEach(c=>c.onclick=()=>filterByGenre(c.dataset.genre));
-        }
-
-        function filterByGenre(genre) {
-            activeGenre = genre;
-            document.querySelectorAll('.genre-chip').forEach(c => c.classList.toggle('active', c.dataset.genre===genre));
-            applyFilters();
-        }
-
-        document.querySelectorAll('.filter-tab').forEach(tab=>tab.onclick=()=>{
-            document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
-            tab.classList.add('active'); activeFilter=tab.dataset.filter; applyFilters();
-        });
-
-        document.getElementById('search-input').addEventListener('input', (e) => { searchQuery = e.target.value.toLowerCase().trim(); applyFilters(); });
-
-        function applyFilters() {
-            filteredGames = rawGames.filter(game => {
-                const matchesGenre = activeGenre === 'all' || (game.genres && game.genres.includes(activeGenre));
-                const matchesSearch = game.title.toLowerCase().includes(searchQuery) || (game.description && game.description.toLowerCase().includes(searchQuery));
-                let matchesFilter = true;
-                if(activeFilter==='popular') matchesFilter = game.playCount>0;
-                if(activeFilter==='new') matchesFilter = game.isNew;
-                if(activeFilter==='played') matchesFilter = game.playCount>0;
-                if(activeFilter==='favorites') matchesFilter = isFavorite(game.id);
-                return matchesGenre && matchesSearch && matchesFilter;
-            });
-            if(activeFilter==='popular') filteredGames.sort((a,b)=>b.playCount-a.playCount);
-            displayedCount=0; document.getElementById('games-holder').querySelectorAll('.game-card').forEach(c=>c.remove());
-            document.getElementById('loading-trigger').style.display='block'; renderBatch();
-        }
-
-        function renderBatch() {
-            const grid = document.getElementById('games-holder'); const trigger = document.getElementById('loading-trigger');
-            const nextBatch = filteredGames.slice(displayedCount, displayedCount + step);
-            nextBatch.forEach(game => {
-                const card = document.createElement('div'); card.className = 'game-card';
-                card.innerHTML = `
-                    <div class="media-holder">
-                        <img class="game-img" src="${game.images[0]}" alt="${game.title}" loading="lazy">
-                        <button class="fav-btn ${isFavorite(game.id)?'active':''}" onclick="event.stopPropagation();toggleFav('${game.id}',this)"><i class="fa-solid fa-heart"></i></button>
-                        <div class="card-badges">
-                            <span class="badge"><i class="fa-solid ${game.screenOrientation?.horizontal?'fa-square-caret-right':'fa-mobile-screen-button'}"></i></span>
-                        </div>
-                    </div>
-                    <div class="game-meta">
-                        <div class="game-title">${game.title}</div>
-                        <div class="game-genres-list">${game.genres?game.genres.slice(0,2).join(', '):''}</div>
-                        <div class="game-stats"><span><i class="fa-solid fa-gamepad"></i> ${game.playCount}</span></div>
-                    </div>`;
-                card.onclick=()=>openGame(game);
-                grid.insertBefore(card, trigger);
-            });
-            displayedCount+=step; if(displayedCount>=filteredGames.length) trigger.style.display='none';
-        }
-
-        const scrollObserver = new IntersectionObserver((entries)=>{ if(entries[0].isIntersecting && displayedCount<filteredGames.length) renderBatch(); },{threshold:0.1});
-        scrollObserver.observe(document.getElementById('loading-trigger'));
-
-        function openGame(game) {
-            currentGame=game; game.playCount++; localStorage.setItem(`plays_${game.id}`, game.playCount);
-            document.getElementById('m-title').innerText=game.title;
-            document.getElementById('gameIframe').src=game.gameURL+`&lang=${currentLang}`;
-            document.getElementById('m-desc').innerText=game.description||'-';
-            document.getElementById('m-howto').innerText=game.howToPlayText||'-';
-            document.getElementById('m-plays').innerText=game.playCount;
-            document.getElementById('m-orient').innerText=game.screenOrientation?.horizontal?t('horizontal'):t('vertical');
-            document.getElementById('m-purchases').innerText=game.inGamePurchases==="Yes"?t('yes'):t('no');
-            const tagsBox=document.getElementById('m-tags'); tagsBox.innerHTML='';
-            if(game.tags) game.tags.forEach(t=>{const el=document.createElement('span');el.className='tag-item';el.innerText=t;tagsBox.appendChild(el);});
-            document.getElementById('gameModal').style.display='flex'; document.body.style.overflow='hidden';
-        }
-        function closeGame(){ document.getElementById('gameModal').style.display='none'; document.getElementById('gameIframe').src=''; document.body.style.overflow='auto'; }
-
-        document.getElementById('btn-fullscreen').onclick=()=>{
-            const el=document.getElementById('iframe-container');
-            if(!document.fullscreenElement) el.requestFullscreen().catch(()=>{});
-            else document.exitFullscreen();
-        };
-
-        document.getElementById('btn-share').onclick=()=>{
-            const url=window.location.href+`#game=${currentGame.id}`;
-            navigator.clipboard.writeText(url).then(()=>alert(t('copied')));
-        };
-
-        function setupScrollButtons(){
-            const bar = document.getElementById('genres-container');
-            const left = document.getElementById('scrollLeft');
-            const right = document.getElementById('scrollRight');
-            left.onclick = () => bar.scrollBy({left: currentLang==='ar'? 300 : -300, behavior:'smooth'});
-            right.onclick = () => bar.scrollBy({left: currentLang==='ar'? -300 : 300, behavior:'smooth'});
-        }
-
-        document.getElementById('btn-lang').addEventListener('click',()=>{
-            const idx=langs.indexOf(currentLang); currentLang=langs[(idx+1)%langs.length];
-            const html=document.documentElement;
-            html.setAttribute('dir',currentLang==='ar'?'rtl':'ltr'); html.setAttribute('lang',currentLang);
-            document.getElementById('btn-lang').querySelector('span').innerText=currentLang.toUpperCase();
-            document.querySelectorAll('.lang-node').forEach(n=>n.innerText=n.getAttribute(`data-${currentLang}`)||n.getAttribute('data-en'));
-            const srcInp=document.getElementById('search-input'); srcInp.placeholder=srcInp.getAttribute(`data-${currentLang}`);
-            buildGenresBar(); applyFilters();
-            if(currentGame) document.getElementById('gameIframe').src=currentGame.gameURL+`&lang=${currentLang}`;
-        });
-
-        function isFavorite(id){ return JSON.parse(localStorage.getItem('favorites')||'[]').includes(id); }
-        function toggleFav(id,btn){ let favs=JSON.parse(localStorage.getItem('favorites')||'[]');
-            if(favs.includes(id)){ favs=favs.filter(f=>f!==id); btn.classList.remove('active'); }
-            else{ favs.push(id); btn.classList.add('active'); }
-            localStorage.setItem('favorites',JSON.stringify(favs));
-        }
-
-        let pwaPrompt; window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();pwaPrompt=e;document.getElementById('btn-install').style.display='flex';});
-        document.getElementById('btn-install').addEventListener('click',async()=>{if(pwaPrompt){pwaPrompt.prompt();const{outcome}=await pwaPrompt.userChoice;if(outcome==='accepted')document.getElementById('btn-install').style.display='none';pwaPrompt=null;}});
-
-        window.onload=initPlatform;
     </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="script.js"></script>
 </body>
 </html>
