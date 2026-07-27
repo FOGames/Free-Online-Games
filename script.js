@@ -8,26 +8,84 @@ let activeFilter = 'all';
 let currentGame = null;
 let isKidsMode = false;
 let bannerKiller;
+let pwaPrompt = null;
+let isLoading = false;
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+        .then(reg => console.log('تم تسجيل Service Worker بنجاح:', reg.scope))
+        .catch(err => console.log('فشل تسجيل Service Worker:', err));
+    });
+}
+
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    pwaPrompt = e;
+    const btnInstall = document.getElementById('btn-install');
+    if (btnInstall && !isStandalone()) {
+        btnInstall.style.display = 'inline-flex';
+    }
+});
+
+window.addEventListener('appinstalled', () => {
+    pwaPrompt = null;
+    const btnInstall = document.getElementById('btn-install');
+    if (btnInstall) {
+        btnInstall.classList.add('installed');
+    }
+});
+
+function isStandalone() {
+    return window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true;
+}
+
+function setupPWAInstallButton() {
+    const btnInstall = document.getElementById('btn-install');
+    if (!btnInstall) return;
+    if (isStandalone()) {
+        btnInstall.classList.add('installed');
+        return;
+    }
+    btnInstall.onclick = async () => {
+        if (pwaPrompt) {
+            pwaPrompt.prompt();
+            const { outcome } = await pwaPrompt.userChoice;
+            if (outcome === 'accepted') {
+                btnInstall.classList.add('installed');
+            }
+            pwaPrompt = null;
+        }
+    };
+}
 
 async function initPlatform() {
     try {
-        const res = await fetch('games.json');
+        setupPWAInstallButton();
+        const res = await fetch('games.json?v=' + Date.now());
+        if(!res.ok) throw new Error('games.json not found');
         const data = await res.json();
         const todaySeed = new Date().toISOString().slice(0,10).replace(/-/g,'');
         const dailyIndex = parseInt(todaySeed) % (data.segments[0].hits.length || 1);
 
         rawGames = data.segments[0].hits.map((g,i)=>({
-        ...g, playCount: parseInt(localStorage.getItem(`plays_${g.id}`)||0), isNew: i<5, isDaily: i === dailyIndex
+            ...g, playCount: parseInt(localStorage.getItem(`plays_${g.id}`)||0), isNew: i<5, isDaily: i === dailyIndex
         }));
 
+        document.getElementById('loading-trigger').style.display = 'none';
         buildGenresBar(); applyFilters(); setupScrollButtons(); buildFeaturedSlider(); checkResumeBanner(); checkUrlHash();
         killGoogleBannerForever();
         const savedLang = localStorage.getItem('fo_lang');
         if(savedLang && savedLang!== 'ar') setTimeout(()=>selectLanguage(savedLang), 1500);
-    } catch (err) { console.error("فشل تحميل games.json", err); }
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('hashchange', checkUrlHash);
+    } catch (err) {
+        console.error("فشل تحميل games.json", err);
+        document.getElementById('loading-trigger').innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i> فشل تحميل الالعاب. اتأكد من ملف games.json';
+    }
 }
 
-/* قاتل بانر جوجل شغال 24 ساعة */
 function killGoogleBannerForever() {
     bannerKiller = new MutationObserver(() => {
         document.querySelectorAll('.goog-te-banner-frame').forEach(f => f.remove());
@@ -48,7 +106,6 @@ function buildFeaturedSlider() {
 function openTranslateModal() { document.getElementById('translateModal').style.display = 'flex'; }
 function closeTranslateModal() { document.getElementById('translateModal').style.display = 'none'; }
 
-/* ترجمة بدوسة واحدة + مسح البانر من جوه الiframe */
 function selectLanguage(langCode) {
     closeTranslateModal();
     let select = document.querySelector('.goog-te-combo');
@@ -58,8 +115,6 @@ function selectLanguage(langCode) {
     select.value = langCode;
     select.dispatchEvent(new Event('change'));
     localStorage.setItem('fo_lang', langCode);
-
-    // نستنى نص ثانية وبعدين نخش نمسح البانر من جوه
     setTimeout(() => {
         document.querySelectorAll('.goog-te-banner-frame').forEach(iframe => {
             try {
@@ -95,8 +150,10 @@ function checkUrlHash() {
     if(window.location.hash.includes('#game=')) {
         const id = window.location.hash.split('#game=')[1];
         const game = rawGames.find(g => g.id === id);
-        if(game) openGame(game);
+        if(game) openGame(game, false);
         else { document.getElementById('page-404').style.display = 'block'; document.getElementById('games-holder').style.display = 'none'; }
+    } else {
+        closeGameModalUI();
     }
 }
 
@@ -118,28 +175,129 @@ function applyFilters() {
         return matchesGenre && matchesSearch && matchesFilter;
     });
     if(activeFilter==='popular') filteredGames.sort((a,b)=>b.playCount-a.playCount);
-    displayedCount=0; document.getElementById('games-holder').innerHTML = '<div id="loading-trigger"><i class="fa-solid fa-circle-notch fa-spin"></i> <span>جاري استدعاء الألعاب...</span></div>'; renderBatch();
+    displayedCount=0;
+    document.getElementById('games-holder').innerHTML = '<div id="loading-trigger"><i class="fa-solid fa-circle-notch fa-spin"></i> <span>جاري استدعاء الألعاب...</span></div>';
+    isLoading = false;
+    renderBatch();
+}
+
+function handleScroll() {
+    const trigger = document.getElementById('loading-trigger');
+    if(!trigger || isLoading) return;
+    const rect = trigger.getBoundingClientRect();
+    if(rect.top <= window.innerHeight + 200) {
+        renderBatch();
+    }
 }
 
 function renderBatch() {
-    const grid = document.getElementById('games-holder'); const trigger = document.getElementById('loading-trigger');
+    if(isLoading) return;
+    isLoading = true;
+
+    const grid = document.getElementById('games-holder');
+    const trigger = document.getElementById('loading-trigger');
+
+    if(filteredGames.length === 0){
+        trigger.innerHTML = '<i class="fa-solid fa-face-frown"></i> <span>مفيش العاب بالمواصفات دي</span>';
+        isLoading = false;
+        return;
+    }
+
     const nextBatch = filteredGames.slice(displayedCount, displayedCount + step);
-    nextBatch.forEach(game => { const card = document.createElement('div'); card.className = 'game-card'; card.innerHTML = `<div class="media-holder"><img class="game-img" src="${game.images[0]}" alt="${game.title}" loading="lazy"><div class="card-badges">${game.isDaily? `<span class="badge daily-badge"><i class="fa-solid fa-star"></i> تحدي اليوم</span>` : ''}<span class="badge"><i class="fa-solid ${game.screenOrientation?.horizontal?'fa-square-caret-right':'fa-mobile-screen-button'}"></i></span></div></div><div class="game-meta"><div class="game-title">${game.title}</div><div class="game-genres-list">${game.genres?game.genres.slice(0,2).join(', '):''}</div></div>`; card.onclick=()=>openGame(game); grid.insertBefore(card, trigger); });
-    displayedCount+=step; if(displayedCount>=filteredGames.length) trigger.style.display='none';
+    nextBatch.forEach(game => {
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.innerHTML = `<div class="media-holder"><img class="game-img" src="${game.images[0]}" alt="${game.title}" loading="lazy"><div class="card-badges">${game.isDaily? `<span class="badge daily-badge"><i class="fa-solid fa-star"></i> تحدي اليوم</span>` : ''}<span class="badge"><i class="fa-solid ${game.screenOrientation?.horizontal?'fa-square-caret-right':'fa-mobile-screen-button'}"></i></span></div></div><div class="game-meta"><div class="game-title">${game.title}</div></div>`;
+        card.onclick=()=>openGame(game);
+        grid.insertBefore(card, trigger);
+    });
+
+    displayedCount+=step;
+
+    if(displayedCount>=filteredGames.length) {
+        trigger.innerHTML = '<i class="fa-solid fa-check"></i> <span>تم تحميل كل الألعاب</span>';
+    }
+
+    setTimeout(()=>{isLoading=false}, 300);
 }
 
-const scrollObserver = new IntersectionObserver((entries)=>{ if(entries[0].isIntersecting && displayedCount<filteredGames.length) renderBatch(); },{threshold:0.1});
-scrollObserver.observe(document.getElementById('loading-trigger'));
+/* دالة فتح اللعبة مع ضبط الرابط وعرض الإطار بشكل صح */
+function openGame(game, setHash = true) {
+    currentGame=game; 
+    game.playCount++; 
+    localStorage.setItem(`plays_${game.id}`, game.playCount); 
+    localStorage.setItem('last_played_game', game.id); 
+    checkResumeBanner();
 
-function openGame(game) {
-    currentGame=game; game.playCount++; localStorage.setItem(`plays_${game.id}`, game.playCount); localStorage.setItem('last_played_game', game.id); checkResumeBanner();
-    document.getElementById('m-title').innerText=game.title; document.getElementById('gameIframe').src=game.gameURL; document.getElementById('m-desc').innerText=game.description||'-'; document.getElementById('m-howto').innerText=game.howToPlayText||'-'; document.getElementById('m-orient').innerText=game.screenOrientation?.horizontal?'أفقي':'رأسي'; document.getElementById('m-purchases').innerText=game.inGamePurchases==="Yes"?'نعم':'لا'; document.getElementById('m-devices').innerText = game.mobileReady? game.mobileReady.join(', ') : 'جميع الأجهزة'; updateFavModalBtn();
-    const tagsBox=document.getElementById('m-tags'); tagsBox.innerHTML=''; if(game.tags) game.tags.forEach(t=>{const el=document.createElement('span');el.className='tag-item';el.innerText=t;tagsBox.appendChild(el);});
-    document.getElementById('gameModal').style.display='flex'; document.body.style.overflow='hidden'; document.getElementById('qr-container').style.display = 'none';
+    if(setHash) {
+        window.location.hash = `#game=${game.id}`;
+    }
+
+    document.getElementById('m-title').innerText=game.title; 
+    
+    const iframe = document.getElementById('gameIframe');
+    iframe.src = game.gameURL; 
+
+    document.getElementById('m-desc').innerText=game.description||'-'; 
+    document.getElementById('m-howto').innerText=game.howToPlayText||'-'; 
+    document.getElementById('m-orient').innerText=game.screenOrientation?.horizontal?'أفقي':'رأسي'; 
+    document.getElementById('m-purchases').innerText=game.inGamePurchases==="Yes"?'نعم':'لا'; 
+    document.getElementById('m-devices').innerText = game.mobileReady? game.mobileReady.join(', ') : 'جميع الأجهزة'; 
+    
+    updateFavModalBtn();
+
+    const tagsBox=document.getElementById('m-tags'); 
+    tagsBox.innerHTML=''; 
+    if(game.tags) game.tags.forEach(t=>{
+        const el=document.createElement('span');
+        el.className='tag-item';
+        el.innerText=t;
+        tagsBox.appendChild(el);
+    });
+
+    document.getElementById('gameModal').style.display='flex'; 
+    document.body.style.overflow='hidden'; 
+    document.getElementById('qr-container').style.display = 'none';
 }
-function closeGame(){ document.getElementById('gameModal').style.display='none'; document.getElementById('gameIframe').src=''; document.body.style.overflow='auto'; }
-function updateFavModalBtn() { const btn = document.getElementById('btn-fav-modal'); if(currentGame && isFavorite(currentGame.id)) btn.style.color = '#ef4444'; else btn.style.color = 'inherit'; }
-function toggleFavCurrent() { if(!currentGame) return; toggleFav(currentGame.id); updateFavModalBtn(); }
+
+/* دالة الخروج من صفحة اللعبة كلياً وتفريغ الـ Hash */
+function closeGame(){ 
+    if (window.location.hash.includes('#game=')) {
+        history.pushState("", document.title, window.location.pathname + window.location.search);
+    }
+    closeGameModalUI();
+}
+
+function closeGameModalUI() {
+    const modal = document.getElementById('gameModal');
+    if (modal) modal.style.display='none'; 
+    const iframe = document.getElementById('gameIframe');
+    if (iframe) iframe.src='about:blank'; 
+    document.body.style.overflow='auto'; 
+}
+
+function updateFavModalBtn() {
+    const btn = document.getElementById('btn-fav-modal');
+    if (!btn ||!currentGame) return;
+    const isFav = isFavorite(currentGame.id);
+    if (isFav) {
+        btn.classList.add('active');
+        btn.style.color = '#ef4444';
+    } else {
+        btn.classList.remove('active');
+        btn.style.color = 'inherit';
+    }
+}
+
+function toggleFavCurrent() {
+    if (!currentGame) return;
+    toggleFav(currentGame.id);
+    updateFavModalBtn();
+    if (activeFilter === 'favorites') {
+        applyFilters();
+    }
+}
+
 function playRandomGame() { if(rawGames.length === 0) return; const randomIndex = Math.floor(Math.random() * rawGames.length); openGame(rawGames[randomIndex]); }
 function shareCurrentGame() { if(!currentGame) return; const url = window.location.href.split('#')[0] + `#game=${currentGame.id}`; if (navigator.share) navigator.share({ title: currentGame.title, text: `العب ${currentGame.title} على FO.Games!`, url: url }); else navigator.clipboard.writeText(url).then(()=>alert('تم نسخ الرابط!')); }
 function toggleGameQRCode() { const container = document.getElementById('qr-container'); if(container.style.display === 'block') container.style.display = 'none'; else { container.style.display = 'block'; document.getElementById('qrcode').innerHTML = ''; const url = window.location.href.split('#')[0] + `#game=${currentGame.id}`; new QRCode(document.getElementById("qrcode"), { text: url, width: 128, height: 128 }); } }
@@ -160,6 +318,5 @@ document.getElementById('btn-fullscreen').onclick=()=>{ const el=document.getEle
 function setupScrollButtons(){ const bar = document.getElementById('genres-container'); document.getElementById('scrollLeft').onclick = () => bar.scrollBy({left: 300, behavior:'smooth'}); document.getElementById('scrollRight').onclick = () => bar.scrollBy({left: -300, behavior:'smooth'}); }
 function isFavorite(id){ return JSON.parse(localStorage.getItem('favorites')||'[]').includes(id); }
 function toggleFav(id){ let favs=JSON.parse(localStorage.getItem('favorites')||'[]'); if(favs.includes(id)){ favs=favs.filter(f=>f!==id); } else{ favs.push(id); } localStorage.setItem('favorites',JSON.stringify(favs)); }
-let pwaPrompt; window.addEventListener('beforeinstallprompt',(e)=>{ e.preventDefault(); pwaPrompt=e; document.getElementById('btn-install').style.display='inline-flex'; });
-document.getElementById('btn-install').addEventListener('click',async()=>{ if(pwaPrompt){ pwaPrompt.prompt(); const{outcome}=await pwaPrompt.userChoice; if(outcome==='accepted') document.getElementById('btn-install').style.display='none'; pwaPrompt=null; } });
-window.onload=initPlatform;
+
+window.onload = initPlatform;
