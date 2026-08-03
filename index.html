@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Online Games</title>
+        <script>
+        (function () {
+            const key = 'fo_initial_hard_reload_done';
+            if (!localStorage.getItem(key)) {
+                localStorage.setItem(key, '1');
+                const url = new URL(window.location.href);
+                url.searchParams.set('_hard_reload', Date.now().toString());
+                window.location.replace(url.toString());
+            }
+        })();
+    </script>
+    <title>Free Online Games | منصة الألعاب العالمية</title>
      <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&family=Inter:wght@400;600;700&display=swap"
         rel="stylesheet">
